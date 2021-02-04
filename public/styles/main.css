@@ -3,7 +3,7 @@
   --bkg-page: #fefefe;
   --line: #dbdbdb;
   --primary: #195ca9;
-  --progress-bar: #039ded;
+  --secondary: #009ded;
   --budget-bar: #fffbe6;
   --pop-up: #7bd5fb;
   --warning: #c0373d;
@@ -170,7 +170,6 @@ input[type='checkbox']:checked ~ label:before{
   background-color: black;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Crect width='20' height='20' rx='4'/%3E%3Cpath fill='%23FFF' d='M4 10.802l2.002-2.039 2.179 2.217L14.056 5 16 6.979 8.123 15z'/%3E%3C/g%3E%3C/svg%3E");
   background-position: center;
-
 }
 
 .arrow {

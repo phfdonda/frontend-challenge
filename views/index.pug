@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Front-end Challenge - by Pedro Donda
-    link(rel="stylesheet", href="./styles/main.css")
-  body
-    #container
-      h3#title Qual serviço de Cabeleireiros está precisando?
-      ul#form
-        li.form-radio
-          input(type="radio", name="a")
-          label(for="a") Cauterização
-        li.form-radio
-          input(type="radio", name="a")
-          label(for="a") Cauterização
-        li.form-checkbox
-          input(type="checkbox", name="b")
-          label(for="b") Cauterização
-      #budget-bar
-        #clock-img
-        #budget-phrase Orçamentos em até 60 minutos
+extends layout.pug
+
+block content
+  #container
+    #budget-bar
+      #clock-img
+      #budget-phrase Orçamentos em até 60 minutos
