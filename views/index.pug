@@ -8,13 +8,16 @@ html(lang="en")
   body
     #container
       h3#title Qual serviço de Cabeleireiros está precisando?
-      #form
-        .form-item
-          p Cauterização
-          .arrow
-        .form-item
-          p Corte
-          .arrow
+      ul#form
+        li.form-radio
+          input(type="radio", name="a")
+          label(for="a") Cauterização
+        li.form-radio
+          input(type="radio", name="a")
+          label(for="a") Cauterização
+        li.form-checkbox
+          input(type="checkbox", name="b")
+          label(for="b") Cauterização
       #budget-bar
         #clock-img
         #budget-phrase Orçamentos em até 60 minutos
