@@ -52,7 +52,7 @@ function selectForm(fields) {
 }
 
 function configButtons(fields) {
-  const step = sessionStorage.getItem('step')
+  const step = sessionStorage.getItem("step")
   const nextBtn = document.getElementById("next")
   const backBtn = document.getElementById("back")
 
@@ -68,11 +68,23 @@ function configButtons(fields) {
     }
     console.log(inputValue)
   })
+
+  backBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    decreaseStep()
+    buildForm(fields)
+  })
 }
 
 function increaseStep() {
   let step = sessionStorage.getItem("step")
   step = (parseInt(step) + 1).toString()
+  sessionStorage.setItem("step", step)
+}
+
+function decreaseStep() {
+  let step = sessionStorage.getItem("step")
+  step = (parseInt(step) - 1).toString()
   sessionStorage.setItem("step", step)
 }
 
