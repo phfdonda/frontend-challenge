@@ -47,11 +47,11 @@ function selectForm(step, fields) {
 }
 
 function renderButtons(step, content) {
-  const nextText = (step == 5) ? 'Finalizar' : 'Próximo'
-  return(`
+  const nextText = step == 5 ? "Finalizar" : "Próximo"
+  return `
   <div class="buttons">
-  <button ${(step == 0) ? 'hidden' : ''} class="">Voltar</button>
-  <button id="next">${(content.required) ? nextText : 'Pular'} </button>
+    <button ${step == 0 ? "hidden" : ""} id="back">Voltar</button>
+    <button id="next">${content.required ? nextText : "Pular"} </button>
   </div>
-  `)
+  `
 }
