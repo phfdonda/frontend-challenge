@@ -46,23 +46,19 @@ li {
 
 select {
   width: 100%;
-  height: 40px;
+  height: 50px;
   border-radius: 5px;
   font-size: 1rem;
   background-color: var(--bkg-page);
   padding: 10px;
 }
 
-input,
-label {
-  width: 100%;
-  height: 100%;
-}
-
 label {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  width: 100%;
+  height: 100%;
   font-size: 0.8rem;
   font-family: "source", Helvetica, Arial, sans-serif;
   font-weight: bold;
@@ -75,11 +71,22 @@ button {
   border: none;
   font-weight: bold;
   font-size: 1.2rem;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+textarea {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  min-height: 100px;
+  border-radius: 5px;
+  font-size: 1.1rem;
 }
 
 .buttons {
   display: flex;
-  margin-top: 10px;
+  margin: 30px 0;
   width: 100%;
   height: 40px;
 }
@@ -148,6 +155,9 @@ button {
 #back {
   background-color: transparent;
   color: var(--primary);
+}
+#back:hover {
+  color: var(--secondary);
 }
 
 #warning {
