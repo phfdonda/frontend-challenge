@@ -2,65 +2,56 @@ fetch("data/fields.json")
   .then((res) => res.json())
   .then((data) => {
     const fields = data._embedded
-    console.log(fields)
     buildForm(fields)
   })
 
-  function buildForm(fields) {
-    let step = 0
-    const choicesMade = {}
-    const formContent = selectForm(step,fields)
-    const html = writeHTML(formContent)
-    console.log(formContent)
-    const form = document.querySelector("#form")
-    form.innerHTML = html
-  }
+function buildForm(fields) {
+  let step = 0
+  const choicesMade = {}
+  const formContent = selectForm(step, fields)
+  const html = writeHTML(step, formContent)
+  const form = document.querySelector("#form")
+  form.innerHTML = html
+}
 
-  function writeHTML(content){
-    return(
-    `
+function writeHTML(step, content) {
+  return `
       <label for=${content.name}>${content.label}</label>
-      <select>
+      <select placeholder="${content.placeholder}">
         ${listOptions(content.values)}
       </select>
+      <span hidden id="warning">Este campo é requerido</span>
+      ${renderButtons(step, content)}
     `
-    )
-  }
+}
 
-  function listOptions(values){
-    const valuesArray = Object.keys(values)
-    let optionsHTML = ''
-    valuesArray.forEach(value => {
-      optionsHTML +=
-      `
+function listOptions(values) {
+  const valuesArray = Object.keys(values)
+  let optionsHTML = `
+    <option value='' disabled selected>Selecione uma opção</option>
+    `
+  valuesArray.forEach((value) => {
+    optionsHTML += `
         <option value=${value}>${value}</option>
       `
-    })
-    return optionsHTML
+  })
+  return optionsHTML
+}
+
+function selectForm(step, fields) {
+  if (step < 5) {
+    return fields.request_fields[step]
+  } else {
+    return fields.user_fields
   }
+}
 
-  function selectForm(step, fields){
-    if(step < 5){
-      return fields.request_fields[step]
-    }else{
-      return fields.user_fields
-    }
-  }
-
-  // const optionsArray = Object.keys(values)
-
-  // const form = document.querySelector("#form")
-  // optionsArray.forEach((option) => {
-  //   const item = document.createElement('li')
-  //   const text = document.createElement('p')
-  //   const arrow = document.createElement('div')
-
-  //   item.classList.add('form-item')
-  //   arrow.classList.add('arrow')
-  //   text.textContent = values[option]
-
-  //   item.appendChild(text)
-  //   item.appendChild(arrow)
-  //   form.appendChild(item)
-  // })
-  // console.log(form)
+function renderButtons(step, content) {
+  const nextText = (step == 5) ? 'Finalizar' : 'Próximo'
+  return(`
+  <div class="buttons">
+  <button ${(step == 0) ? 'hidden' : ''} class="">Voltar</button>
+  <button id="next">${(content.required) ? nextText : 'Pular'} </button>
+  </div>
+  `)
+}
