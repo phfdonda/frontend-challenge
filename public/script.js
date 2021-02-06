@@ -16,7 +16,6 @@ function buildForm(fields) {
 
 function writeHTML(content) {
   // This method will draw the form according to the content of the json file
-  console.log(content)
   const step = sessionStorage.getItem("step")
   const selectForm = step == 5 ? "user_fields" : "request_fields"
   const formHTML = {
@@ -55,7 +54,7 @@ function requestInputs(content){
         placeholder="${content.placeholder}"
       >${content.type == "enumerable" ? listOptions(content.values) : ""}</${
         htmlTag[content.type]}>
-        <span hidden id="warning">Este campo é requerido</span>`
+        <span hidden class="warning">Este campo é requerido</span>`
 }
 
 function userInputs(content){
@@ -63,18 +62,21 @@ function userInputs(content){
   let fieldsHTML = ''
 
   fieldsArray.forEach((index) => {
-    console.log(index)
-    console.log(content[index])
     const field = content[index]
     fieldsHTML +=
-    ` <label for='user__${field.name}'>${field.label}</label>
+    `
+    <div id='${field.name}__field' class="input__field">
+      <label for='user__${field.name}'>${field.label}</label>
       <input
+        class="user-input"
         id='user__${field.name}'
         placeholder='${field.placeholder}'
         ${field.required ? 'required' : ''}
         type='${field.type}'
         value=''
-    >
+        oninvalid="alert(nope)">
+      ${field.required ? '<span hidden class="warning">Este campo é requerido</span>' : ''}
+    </div>
     `
   })
   return fieldsHTML
@@ -111,7 +113,7 @@ function configButtons(fields) {
   nextBtn.addEventListener("click", (e) => {
     e.preventDefault()
     const inputValue = document.querySelector(".user-input").value
-    if (inputValue.length == 0 && nextBtn.textContent == "Próximo") {
+    if (inputValue.length == 0 && ['Próximo', 'Finalizar'].includes(nextBtn.textContent)) {
       activateWarning()
     } else {
       sessionStorage.setItem(step, inputValue)
@@ -140,10 +142,15 @@ function decreaseStep() {
 }
 
 function activateWarning() {
-  const warning = document.getElementById("warning")
-  const select = document.querySelector(".user-input")
-  warning.removeAttribute("hidden")
-  select.classList.add("warned")
+  const warnings = document.querySelectorAll(".warning")
+  console.log(warnings)
+  const inputs = document.querySelectorAll(".user-input")
+  warnings.forEach(warning=>{
+    warning.removeAttribute("hidden")
+  })
+  inputs.forEach(input => {
+    input.classList.add("warned")
+  })
 }
 
 function renderButtons(content) {
