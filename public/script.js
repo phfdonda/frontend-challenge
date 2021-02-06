@@ -7,16 +7,17 @@ fetch("data/fields.json")
   })
 
 function buildForm(fields) {
+  const step = getStep()
   const formContent = selectForm(fields)
   const html = writeHTML(formContent)
   const form = document.querySelector("#form")
   form.innerHTML = html
-  configButtons(fields)
+  step < 6 ? configButtons(fields) : false
 }
 
 function writeHTML(content) {
   // This method will draw the form according to the content of the json file
-  const step = sessionStorage.getItem("step")
+  const step = getStep()
   const selectForm = step == 5 ? "user_fields" : "request_fields"
   const formHTML = {
     request_fields: {
@@ -33,8 +34,11 @@ function writeHTML(content) {
         inputs: userInputs(content)
     },
   }
+  const thanks = "<h2>Obrigado!</h2><h3>Nós recebemos sua consulta e entraremos em contato em breve com orçamentos dos melhores profissionais do mercado!</h3>"
+  
   const form = formHTML[selectForm]
-  const html = `
+  const html =
+  `
     <div class='form__info'>
       ${form.img}
       <h2>${form.title}</h3>
@@ -43,7 +47,13 @@ function writeHTML(content) {
     ${form.inputs}
     ${renderButtons(content)}
     `
-  return html
+
+  return (step == 6 ? thanks : html)
+}
+
+function thankYou(){
+  return
+
 }
 
 function requestInputs(content){
@@ -80,7 +90,6 @@ function userInputs(content){
     `
   })
   return fieldsHTML
-
 }
 
 function listOptions(values) {
@@ -96,8 +105,12 @@ function listOptions(values) {
   return optionsHTML
 }
 
+function getStep(){
+  return sessionStorage.getItem("step")
+}
+
 function selectForm(fields) {
-  const step = sessionStorage.getItem("step")
+  const step = getStep()
   if (step < 5) {
     return fields.request_fields[step]
   } else {
@@ -106,7 +119,7 @@ function selectForm(fields) {
 }
 
 function configButtons(fields) {
-  const step = sessionStorage.getItem("step")
+  const step = getStep()
   const nextBtn = document.getElementById("next")
   const backBtn = document.getElementById("back")
 
@@ -130,13 +143,13 @@ function configButtons(fields) {
 }
 
 function increaseStep() {
-  let step = sessionStorage.getItem("step")
+  let step = getStep()
   step = (parseInt(step) + 1).toString()
   sessionStorage.setItem("step", step)
 }
 
 function decreaseStep() {
-  let step = sessionStorage.getItem("step")
+  let step = getStep()
   step = (parseInt(step) - 1).toString()
   sessionStorage.setItem("step", step)
 }
@@ -154,7 +167,7 @@ function activateWarning() {
 }
 
 function renderButtons(content) {
-  const step = sessionStorage.getItem("step")
+  const step = getStep()
   const moment = step == 5 ? "final" : "progress"
   const nextTextMap = {
     final: {
