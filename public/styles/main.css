@@ -142,7 +142,8 @@ textarea {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 70px;
+  padding-top: 10px;
   background-color: var(--budget-bar);
   border-radius: 0 0 8px 8px;
   color: var(--primary);
@@ -191,6 +192,22 @@ textarea {
   width: 100%;
   height: 10px;
   background-color: var(--line);
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  top: 0;
+  left: 0;
+}
+
+#progress-bar__fill{
+  position: relative;
+  grid-row: 1/2;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  border-radius: 0 5px 5px 0;
+  height: 100%;
+  background-color: var(--secondary)
 }
 
 .warning {

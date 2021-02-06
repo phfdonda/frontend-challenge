@@ -13,6 +13,7 @@ function buildForm(fields) {
   const form = document.querySelector("#form")
   form.innerHTML = html
   step < 6 ? configButtons(fields) : false
+  renderProgressBar()
 }
 
 function writeHTML(content) {
@@ -35,7 +36,7 @@ function writeHTML(content) {
     },
   }
   const thanks = "<h2>Obrigado!</h2><h3>Nós recebemos sua consulta e entraremos em contato em breve com orçamentos dos melhores profissionais do mercado!</h3>"
-  
+
   const form = formHTML[selectForm]
   const html =
   `
@@ -152,6 +153,11 @@ function decreaseStep() {
   let step = getStep()
   step = (parseInt(step) - 1).toString()
   sessionStorage.setItem("step", step)
+}
+
+function renderProgressBar(){
+  const bar = document.getElementById('progress-bar__fill')
+  bar.column-end = getStep() + 1
 }
 
 function activateWarning() {
