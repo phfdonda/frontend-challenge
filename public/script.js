@@ -15,16 +15,37 @@ function buildForm(fields) {
 }
 
 function writeHTML(content) {
-
   // This method will draw the form according to the content of the json file
+  const step = sessionStorage.getItem("step")
   const htmlTag = { enumerable: "select", big_text: "textarea" }
+  const formFields = step == 5 ? "user_fields" : "request_fields"
+  const formHeader = {
+    request_fields: {
+      img: "",
+      title: "Explique o que você precisa",
+      small: "Receba até 4 orçamentos grátis, online!",
+    },
+    user_fields: {
+      img: "<img class='form__icon' src='https://tanya-assets.getninjas.com.br/static/images/svg/fast-clock.svg' alt='Relógio'></img>",
+      title: "Estamos quase lá!",
+      small:
+        "<small>Não perca tempo ligando para vários profissionais. Preencha os dados abaixo e <strong>nós encontraremos os melhores pra você!</strong></small>",
+    },
+  }
   const html = `
-      <label for='${content.name}'>${content.label}</label>
-      <${htmlTag[content.type]} class="user-input" placeholder="${
-    content.placeholder
-  }">${content.type == 'enumerable' ? listOptions(content.values) : ''}</${htmlTag[content.type]}>
-      <span hidden id="warning">Este campo é requerido</span>
-      ${renderButtons(content)}
+    <div class='form__info'>
+      ${formHeader[formFields].img}
+      <h2>${formHeader[formFields].title}</h3>
+      <h3>${formHeader[formFields].small}</h3>
+    </div>
+    <label for='${content.name}'>${content.label}</label>
+    <${htmlTag[content.type]}
+      class="user-input"
+      placeholder="${content.placeholder}"
+    >${content.type == "enumerable" ? listOptions(content.values) : ""}</${
+    htmlTag[content.type]}>
+    <span hidden id="warning">Este campo é requerido</span>
+    ${renderButtons(content)}
     `
   return html
 }
@@ -59,7 +80,7 @@ function configButtons(fields) {
   nextBtn.addEventListener("click", (e) => {
     e.preventDefault()
     const inputValue = document.querySelector(".user-input").value
-    if (inputValue.length == 0 && nextBtn.textContent == 'Próximo') {
+    if (inputValue.length == 0 && nextBtn.textContent == "Próximo") {
       activateWarning()
     } else {
       sessionStorage.setItem(step, inputValue)
@@ -89,9 +110,9 @@ function decreaseStep() {
 
 function activateWarning() {
   const warning = document.getElementById("warning")
-  const select = document.querySelector('.user-input')
+  const select = document.querySelector(".user-input")
   warning.removeAttribute("hidden")
-  select.classList.add('warned')
+  select.classList.add("warned")
 }
 
 function renderButtons(content) {
