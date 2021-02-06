@@ -52,11 +52,6 @@ function writeHTML(content) {
   return (step == 6 ? thanks : html)
 }
 
-function thankYou(){
-  return
-
-}
-
 function requestInputs(content){
   const htmlTag = { enumerable: "select", big_text: "textarea" }
   return `<label for='${content.name}'>${content.label}</label>
@@ -156,8 +151,10 @@ function decreaseStep() {
 }
 
 function renderProgressBar(){
+  const progress = parseInt(getStep()) + 1
+  console.log(progress)
   const bar = document.getElementById('progress-bar__fill')
-  bar.column-end = getStep() + 1
+  bar.style.gridColumnEnd = progress
 }
 
 function activateWarning() {
