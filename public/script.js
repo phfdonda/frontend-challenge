@@ -16,38 +16,69 @@ function buildForm(fields) {
 
 function writeHTML(content) {
   // This method will draw the form according to the content of the json file
+  console.log(content)
   const step = sessionStorage.getItem("step")
-  const htmlTag = { enumerable: "select", big_text: "textarea" }
-  const formFields = step == 5 ? "user_fields" : "request_fields"
-  const formHeader = {
+  const selectForm = step == 5 ? "user_fields" : "request_fields"
+  const formHTML = {
     request_fields: {
       img: "",
       title: "Explique o que você precisa",
       small: "Receba até 4 orçamentos grátis, online!",
+      inputs: requestInputs(content)
     },
     user_fields: {
       img: "<img class='form__icon' src='https://tanya-assets.getninjas.com.br/static/images/svg/fast-clock.svg' alt='Relógio'></img>",
       title: "Estamos quase lá!",
       small:
         "<small>Não perca tempo ligando para vários profissionais. Preencha os dados abaixo e <strong>nós encontraremos os melhores pra você!</strong></small>",
+        inputs: userInputs(content)
     },
   }
+  const form = formHTML[selectForm]
   const html = `
     <div class='form__info'>
-      ${formHeader[formFields].img}
-      <h2>${formHeader[formFields].title}</h3>
-      <h3>${formHeader[formFields].small}</h3>
+      ${form.img}
+      <h2>${form.title}</h3>
+      <h3>${form.small}</h3>
     </div>
-    <label for='${content.name}'>${content.label}</label>
-    <${htmlTag[content.type]}
-      class="user-input"
-      placeholder="${content.placeholder}"
-    >${content.type == "enumerable" ? listOptions(content.values) : ""}</${
-    htmlTag[content.type]}>
-    <span hidden id="warning">Este campo é requerido</span>
+    ${form.inputs}
     ${renderButtons(content)}
     `
   return html
+}
+
+function requestInputs(content){
+  const htmlTag = { enumerable: "select", big_text: "textarea" }
+  return `<label for='${content.name}'>${content.label}</label>
+      <${htmlTag[content.type]}
+        class="user-input"
+        placeholder="${content.placeholder}"
+      >${content.type == "enumerable" ? listOptions(content.values) : ""}</${
+        htmlTag[content.type]}>
+        <span hidden id="warning">Este campo é requerido</span>`
+}
+
+function userInputs(content){
+  const fieldsArray = Object.keys(content)
+  let fieldsHTML = ''
+
+  fieldsArray.forEach((index) => {
+    console.log(index)
+    console.log(content[index])
+    const field = content[index]
+    fieldsHTML +=
+    ` <label for='user__${field.name}'>${field.label}</label>
+      <input
+        id='user__${field.name}'
+        placeholder='${field.placeholder}'
+        ${field.required ? 'required' : ''}
+        type='${field.type}'
+        value=''
+    >
+    `
+  })
+  return fieldsHTML
+
 }
 
 function listOptions(values) {
@@ -57,7 +88,7 @@ function listOptions(values) {
     `
   valuesArray.forEach((value) => {
     optionsHTML += `
-        <option value=${value}>${value}</option>
+        <option value='${value}'>${value}</option>
       `
   })
   return optionsHTML
