@@ -15,18 +15,18 @@ function buildForm(fields) {
 }
 
 function writeHTML(content) {
+
   // This method will draw the form according to the content of the json file
   const htmlTag = { enumerable: "select", big_text: "textarea" }
-  const field = { enumerable: listOptions(content.values), big_text: "" }
-
-  return `
+  const html = `
       <label for='${content.name}'>${content.label}</label>
       <${htmlTag[content.type]} class="user-input" placeholder="${
     content.placeholder
-  }">${field[content.type]}</${htmlTag[content.type]}>
+  }">${content.type == 'enumerable' ? listOptions(content.values) : ''}</${htmlTag[content.type]}>
       <span hidden id="warning">Este campo é requerido</span>
       ${renderButtons(content)}
     `
+  return html
 }
 
 function listOptions(values) {
@@ -59,14 +59,13 @@ function configButtons(fields) {
   nextBtn.addEventListener("click", (e) => {
     e.preventDefault()
     const inputValue = document.querySelector(".user-input").value
-    if (inputValue.length == 0) {
+    if (inputValue.length == 0 && nextBtn.textContent == 'Próximo') {
       activateWarning()
     } else {
       sessionStorage.setItem(step, inputValue)
       increaseStep()
       buildForm(fields)
     }
-    console.log(inputValue)
   })
 
   backBtn.addEventListener("click", (e) => {
@@ -90,7 +89,9 @@ function decreaseStep() {
 
 function activateWarning() {
   const warning = document.getElementById("warning")
+  const select = document.querySelector('.user-input')
   warning.removeAttribute("hidden")
+  select.classList.add('warned')
 }
 
 function renderButtons(content) {
