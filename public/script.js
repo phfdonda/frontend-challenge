@@ -182,7 +182,7 @@ function renderButtons(content) {
     },
   }
   const nextText = nextTextMap[moment][content.required]
-
+  
   return `
   <div class="buttons">
     <button id="back" ${step == 0 ? "hidden" : ""} >Voltar</button>
