@@ -12,6 +12,14 @@ describe("Front-end Challenge", () => {
     )
   })
 
+  it('should have one button called "Próximo', async () => {
+    const nextBtn = await page.$x('//button[contains(text(), "Próximo")]')
+    console.log(nextBtn)
+    const text = await page.evaluate((txt) => txt.textContent, nextBtn)
+    console.log(text)
+    await expect(text).toMatch("Próximo")
+  })
+
   it('should click the "Próximo" button and be refused', async()=>{
     await page.waitForSelector('#next')
     const nextBtn = await page.$('button[id="next"]')
@@ -20,4 +28,6 @@ describe("Front-end Challenge", () => {
     const text = await page.evaluate(txt => txt.textContent, warning)
     await expect(text).toMatch('Este campo é requerido')
   })
+
+
 })
