@@ -81,7 +81,11 @@ This is a challenge requested as part of a hiring process.
 
 2. I must create a server using Node.js to serve the fields.json file that is in the root folder as an API. I AM allowed to use Express.
 3. I don't have to copy the whole [given page](https://www.getninjas.com.br/moda-e-beleza/cabeleireiros), only the request form. The fields must be dynamically assembled acording to the content of the fields.json file.
-4. Every
+4. Every form field that has the `required: true` must show a warning message if the user tries to go forward without filling it. The message should be "Este campo é requerido".
+5. All fields with type "enumerable" are to be of type `select`. This is basically every one, except for one textarea and four input fields at the end.
+6. The form does not need to make a POST request.
+7. GetNinjas have a culture of unit and integration testing. One of these two forms of testing is mandatory.
+8. I can create a route for the HTML form.
 
 ## Installation
 
