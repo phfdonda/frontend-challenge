@@ -1,0 +1,8 @@
+1612736445092	geckodriver	INFO	Listening on 127.0.0.1:4444
+1612736445339	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilevxheuP"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1612736448067	Marionette	INFO	Listening on port 33093
+1612736448217	Marionette	ERROR	[15] No reply from Marionette:Register
+1612736448991	Marionette	INFO	Stopped listening on port 33093
+JavaScript error: resource://activity-stream/lib/ASRouter.jsm, line 987: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIObserverService.removeObserver]

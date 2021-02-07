@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --detectOpenHandles",
+    "test": "",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -19,10 +19,11 @@
   },
   "homepage": "https://github.com/phfdonda/frontend-challenge#readme",
   "devDependencies": {
+    "chromedriver": "88.0.0",
     "eslint": "^7.19.0",
-    "jest": "^26.6.3",
-    "jest-puppeteer": "4.4.0",
-    "puppeteer": "7.0.1"
+    "geckodriver": "1.22.1",
+    "nightwatch": "1.5.1",
+    "selenium-server": "3.141.59"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

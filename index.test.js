@@ -20,4 +20,9 @@ describe("Front-end Challenge", () => {
     const text = await page.evaluate(txt => txt.textContent, warning)
     await expect(text).toMatch('Este campo é requerido')
   })
+
+  it('should contain a select field', async()=>{
+    await page.waitForSelector("#next")
+    
+  })
 })
