@@ -116,7 +116,9 @@ Enjoy!!
 
 For testing I used the packages `Jest` and `Puppeteer` for integration testing.
 
-To test by yourself, open the terminal, cd into the folder and run `npm test`.
+For the test to work the server must be online. For you to run tests on the project yourself, cd into the project root folder and run `npm start`. In another terminal window, run `npm test`.
+
+I didn't have time enought to do a thorough battery of tests, but I hope the amount here is enough to show some of my knowledge about integration testing.
 
 <!-- CONTACT -->
 
