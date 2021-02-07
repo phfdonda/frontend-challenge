@@ -2,7 +2,6 @@
 
 const express = require("express")
 const bodyParser = require("body-parser")
-const fs = require("fs")
 const app = express()
 app.set("view engine", "pug")
 app.use(bodyParser.urlencoded({ extended: true }))
