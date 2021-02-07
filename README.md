@@ -19,7 +19,7 @@
 ## Live Version
 
 If you want to take a look and see how it is in practice, here's a live version for you:
-[frontend-challenge](https://getninjas-challenge.herokuapp.com/)
+[Live Version](https://getninjas-challenge.herokuapp.com/)
 
 This is an app deployed in Heroku, so please wait up to 30 seconds for it to load the first time.
 
@@ -41,7 +41,6 @@ The initial page looks like this:
   - [Installation](#installation)
   - [Instructions](#instructions)
   - [Built With](#built-with)
-  - [Development Process](#development-process)
   - [Testing](#testing)
 - [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
