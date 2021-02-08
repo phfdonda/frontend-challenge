@@ -64,12 +64,53 @@ module.exports = {
       .expect.element("label")
       .text.to.equal("Para quem será o serviço?")
 
+    // Test if the required attribute is indeed applied to the select field
     browser
       .click("#next")
       .click("#next")
       .assert.containsText("label", "Para quando você precisa deste serviço?")
       .expect.element("select").to.have.attribute("required")
 
+    // Test if it will prevent the user to go on without specifying a value, and if it will show the warning message
+    browser
+      .click("#next")
+      .assert.visible(".warning")
+      .assert.containsText(".warning", "Este campo é requerido")
+      .expect.element("select")
+      .to.have.css("background-color")
+      .which.equals("rgb(253, 236, 236)")
 
+    // Test if by selecting value and pressing #next we go to the next screen
+    browser
+      .click("select")
+      .waitForElementVisible("option", 5000)
+      .setValue("option", "Hoje ou nos próximos dias")
+      .click("select")
+      .click("#next")
+      .assert.containsText("label", "Informações Adicionais")
+
+    browser.assert
+      .elementPresent("textarea")
+      .click("#next")
+      .assert.containsText("h2", "Estamos quase lá!")
+      .assert.containsText(
+        "h3",
+        "Não perca tempo ligando para vários profissionais. Preencha os dados abaixo e nós encontraremos os melhores pra você!")
+      .expect.elements('input').count.to.equal(4)
+
+    browser
+      .click("#next")
+      .assert.visible(".warning")
+      .assert.containsText(".warning", "Este campo é requerido")
+      .expect.elements('.warning').count.to.equal(4)
+
+    browser
+      .setValue("#user__cep", "66666-666")
+      .setValue("#user__name", "João Tinhoso")
+      .setValue("#user__email", "promocaobaratinha@sosuaalma.com")
+      .setValue("#user__phone", "(66) 6666 e adivinha... 6666")
+      .click("#next")
+      .expect.element("h2")
+      .text.to.equal("Obrigado!")
   }
 }
