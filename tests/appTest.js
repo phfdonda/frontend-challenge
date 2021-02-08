@@ -111,6 +111,6 @@ module.exports = {
       .setValue("#user__phone", "(66) 6666 e adivinha... 6666")
       .click("#next")
       .expect.element("h2")
-      .text.to.equal("Obrigado!")
+      .text.to.equal("Obrigado!" )
   }
 }
