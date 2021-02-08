@@ -109,7 +109,7 @@ Enjoy!!
 - Pure CSS (no pre-processors)
 - Express
 - VsCode
-- Jest and Puppeteer for testing.
+- Nightwatch for testing.
 - Stickler for linting.
 
 ## Testing
