@@ -56,10 +56,12 @@ function requestInputs(content){
   const htmlTag = { enumerable: "select", big_text: "textarea" }
   return `<label for='${content.name}'>${content.label}</label>
       <${htmlTag[content.type]}
+        ${content.required ? "required" : ""}
         class="user-input"
         placeholder="${content.placeholder}"
       >${content.type == "enumerable" ? listOptions(content.values) : ""}</${
-        htmlTag[content.type]}>
+    htmlTag[content.type]
+  }>
         <span hidden class="warning">Este campo é requerido</span>`
 }
 
@@ -152,14 +154,12 @@ function decreaseStep() {
 
 function renderProgressBar(){
   const progress = parseInt(getStep()) + 1
-  console.log(progress)
   const bar = document.getElementById('progress-bar__fill')
   bar.style.gridColumnEnd = progress
 }
 
 function activateWarning() {
   const warnings = document.querySelectorAll(".warning")
-  console.log(warnings)
   const inputs = document.querySelectorAll(".user-input")
   warnings.forEach(warning=>{
     warning.removeAttribute("hidden")
@@ -182,7 +182,7 @@ function renderButtons(content) {
     },
   }
   const nextText = nextTextMap[moment][content.required]
-  
+
   return `
   <div class="buttons">
     <button id="back" ${step == 0 ? "hidden" : ""} >Voltar</button>

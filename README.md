@@ -114,7 +114,7 @@ Enjoy!!
 
 ## Testing
 
-For testing I used the packages `Jest` and `Puppeteer` for integration testing.
+For testing I used the package `Nightwatch` for integration testing.
 
 For the test to work the server must be online. For you to run tests on the project yourself, cd into the project root folder and run `npm start`. In another terminal window, run `npm test`.
 

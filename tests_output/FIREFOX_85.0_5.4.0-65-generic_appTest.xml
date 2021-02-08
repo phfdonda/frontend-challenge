@@ -5,9 +5,45 @@
 
   <testsuite name="appTest"
     errors="0" failures="0" hostname="" id="" package="appTest" skipped="0"
-    tests="1" time="0.7480" timestamp="">
+    tests="1" time="3.238" timestamp="">
   
-    <testcase name="FrontEnd Challenge Testing" classname="appTest" time="0.7480" assertions="6">
+    <testcase name="FrontEnd Challenge Testing" classname="appTest" time="3.238" assertions="24">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 

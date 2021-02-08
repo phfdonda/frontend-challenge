@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "",
+    "test": "nightwatch",
     "test:watch": "jest --watch"
   },
   "repository": {
